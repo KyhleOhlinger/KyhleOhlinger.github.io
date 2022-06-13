@@ -8,7 +8,7 @@ image:
   path: /assets/img/missing.png
   width: 800
   height: 500
----
+--- 
 
 Hi everyone,
 

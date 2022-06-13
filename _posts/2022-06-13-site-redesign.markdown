@@ -6,7 +6,7 @@ categories: [InfoSec, Non-Technical]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 ---
 
-It has been a long time coming and I've finally completely overhauled the design of this website for the first time since I started the blog using the [Flexible Jekyll Theme](https://github.com/artemsheludko/flexible-jekyll/) as shown below:
+It has been a long time coming and I've finally completely overhauled the design of this website for the first time since I started the blog using the [Flexible Jekyll Theme](https://github.com/artemsheludko/flexible-jekyll/) as shown below: 
 
 ![img-description](/assets/img/New_Blog/old_1.png)
 _Previous Home Page_

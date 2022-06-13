@@ -8,7 +8,7 @@ image:
   path: /assets/img/soc.jpg
   width: 800
   height: 500
----
+--- 
 
 The first blog post in this series is going to be very short as it aims to cover the basics of what a Security Operations Center (SOC) is and the basic responsibilities of a SOC analyst, which will lend itself to the blog posts that follow. 
 
