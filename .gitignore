@@ -11,10 +11,48 @@
 # bundler cache
 _site
 vendor
-
+Gemfile.lock
+_chirpy_posts
 # rubygem
 *.gem
 
 # npm dependencies
 node_modules
 package-lock.json
+
+
+_site
+.sass-cache
+.jekyll-metadata
+.jekyll-cache
+yarn.lock
+Gemfile.lock
+package-lock.json
+node_modules/
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
