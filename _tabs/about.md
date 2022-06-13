@@ -10,7 +10,7 @@ I enjoy sports, martial arts and keeping up to date with science and technology.
 
 ## Blog Posts
 
-My blog posts can be found on the <a href="{{site.baseurl}}/">main page</a> or a listing per category is provided <a href="{{site.baseurl}}/tags/">here</a>. I've tried to add the correct tags to each of the posts so that they can easily be identified by their categories. If you enjoy my blog please feel free to reach out to me.  
+My blog posts can be found on the <a href="{{site.baseurl}}/">main page</a> or a listing per category is provided <a href="{{site.baseurl}}/categories/">here</a>. I've tried to add the correct tags to each of the posts so that they can easily be identified by their categories. If you enjoy my blog please feel free to reach out to me.  
 
 <!-- <h2> Walkthroughs </h2>
 

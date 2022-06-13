@@ -32,8 +32,7 @@ echo 1 > /proc/sysy/net/ipv4/ip_forward
 ```
 
 #### Create IP Table Rules on Kali Machine:
-IPtables is used to set up, maintain, and inspect the tables of IP packet filter rules in the Linux kernel. More information is available [here](Targets
-https://linux.die.net/man/8/iptables). In addition, I have broken down the commands below:
+IPtables is used to set up, maintain, and inspect the tables of IP packet filter rules in the Linux kernel. More information is available [here](https://linux.die.net/man/8/iptables). In addition, I have broken down the commands below:
 
 * **FORWARD** -- All packets neither destined for nor originating from the host computer, but passing through (routed by) the host computer.
 * **ESTABLISHED** -- meaning that the packet is associated with a connection which has seen packets in both directions.

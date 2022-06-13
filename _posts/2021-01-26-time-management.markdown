@@ -42,4 +42,4 @@ If you would like to use it, I recommend that you do the following with regards 
 * For each new month, copy the Weekly tracker and create a new sheet, e.g. Weekly - September.
 * For each quarter, copy the Quarterly tracker and create a new sheet, e.g Quarterly - Quarter 3, or make one sheet that contains all 4 quarters.
 
-The excel template is [here](../assets/excel/time-management.xlsx). The quick preview doesn't seem to work at all on my blog, but it does open correctly once you download it. Feel free to use it as a base and change it as you need to. I hope this helps someone, even if it just helps you come to terms with organisation tactics that do or don't work in your own situation.
+The excel template is [here](/assets/excel/time-management.xlsx). The quick preview doesn't seem to work at all on my blog, but it does open correctly once you download it. Feel free to use it as a base and change it as you need to. I hope this helps someone, even if it just helps you come to terms with organisation tactics that do or don't work in your own situation.
