@@ -4,6 +4,9 @@ icon: fas fa-info-circle
 order: 2
 ---
 
+> "Everyone you meet always asks you if you have a career, if you are married, or if you own a house - as if life was a grocery list. But no one ever asks if you are happy." 
+> — Heath Ledger
+
 My name is Kyhle Öhlinger and this is my personal blog. Although my day job is in cyber security which requires that I constantly keep up to date with various technologies, I enjoy playing around with random technologies outside of work as well.  I tend to write posts about subjects I find interesting, usually related to mental wellbeing, my take on the industry, and technical writeups.
 
 I enjoy sports, martial arts and keeping up to date with science and technology. In my free time I also enjoy reading, cooking and solving brain teasers. In general, I end up reading multiple books at the same time &#x2012; on average I swap between 1-3 books at any given point. Most recently I have made an active effort to read a variety of business and finance focused books in order to increase my knowledge of a field that intrigues me. In order to keep up to date with the field of cyber security, I make an active effort to attend security conferences and meetups, including; 0xC0FFEE JHB, OWASP JHB, BSides Cape Town, Defcon, and due to Covid, a number of virtual meetups. 
