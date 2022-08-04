@@ -4,16 +4,19 @@ icon: fas fa-info-circle
 order: 2
 ---
 
-> "Everyone you meet always asks you if you have a career, if you are married, or if you own a house - as if life was a grocery list. But no one ever asks if you are happy." 
-> — Heath Ledger
+I am currently a Cloud Security Researcher at [eSentire](https://www.esentire.com/) focusing on the implementation of protective and detective security controls for eSentire's XDR solution. In particular, I am focusing on creating Novel Multi-Signal Threat Detectors coupled with appropriate response actions across cloud and container based environments.
 
-My name is Kyhle Öhlinger and this is my personal blog. Although my day job is in cyber security which requires that I constantly keep up to date with various technologies, I enjoy playing around with random technologies outside of work as well.  I tend to write posts about subjects I find interesting, usually related to mental wellbeing, my take on the industry, and technical writeups.
+I hold a Honour's Degree in Computer Science from the University of Pretoria, and international certifications such as OSCP, CRT, AWS SAA and more, which are linked [below](#accreditations).
 
-I enjoy sports, martial arts and keeping up to date with science and technology. In my free time I also enjoy reading, cooking and solving brain teasers. In general, I end up reading multiple books at the same time &#x2012; on average I swap between 1-3 books at any given point. Most recently I have made an active effort to read a variety of business and finance focused books in order to increase my knowledge of a field that intrigues me. In order to keep up to date with the field of cyber security, I make an active effort to attend security conferences and meetups, including; 0xC0FFEE JHB, OWASP JHB, BSides Cape Town, Defcon, and due to Covid, a number of virtual meetups. 
+Previous to eSentire, I was:
+
+- A Senior Cyber Security Consultant at [MWR CyberSec](https://mwrcybersec.com/) (previously F-Secure Consulting), with a focus on delivering strategic Cloud and Active Directory (AD) based assessments. The assessments encompassed all aspects within the Cyber Kill-Chain across large corporate networks and environments in order to provide meaningful security hardening recommendations. 
+
+- Security Operations Centre (SOC) manager for a large financial institution in South Africa, my responsibilities included the day-to-day management of the SOC, and consolidating and improving the effectiveness of the security monitoring capability through the design and implementation of a transformation roadmap spanning people, processes and technology. 
 
 ## Blog Posts
 
-My blog posts can be found on the <a href="{{site.baseurl}}/">main page</a> or a listing per category is provided <a href="{{site.baseurl}}/categories/">here</a>. I've tried to add the correct tags to each of the posts so that they can easily be identified by their categories. If you enjoy my blog please feel free to reach out to me.  
+I blog about cyber security, mental wellbeing, my take on the industry, and I am currently working on Blue Team focused blog posts. My blog posts can be found on the <a href="{{site.baseurl}}/">main page</a> or a listing per category is provided <a href="{{site.baseurl}}/categories/">here</a>. I've tried to add the correct tags to each of the posts so that they can easily be identified by their categories. If you enjoy my blog please feel free to reach out to me.  
 
 <!-- <h2> Walkthroughs </h2>
 
