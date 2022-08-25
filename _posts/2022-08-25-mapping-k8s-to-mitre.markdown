@@ -5,7 +5,7 @@ date: 2022-08-25 12:00:00 +0200
 categories: [InfoSec, Non-Technical]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
-  path: /assets/img/conferences.png
+  path: /assets/img/K8Matrix.png
   width: 800
   height: 500
 ---
