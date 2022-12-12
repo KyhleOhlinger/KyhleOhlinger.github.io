@@ -46,14 +46,14 @@ With all that being said, I did use the ChatGPT functionality to create some scr
 OpenAI have provided a ton of [documentation](https://beta.openai.com/docs/introduction) that can be used for integrating the ChatGPT and DALL-E components into your own workflow or scripts. I personally believe that the technology is too new to have trusted versions of ChatGPT integration on GitHub (regardless of the number of projects that are already available), and so I wanted to try creating some basic python scripts to do just that. To get started with the API, you will need to generate an API key which can be done from within the "View API Keys" tab:
 
 
-![img-description](/assets/img/OpenAi/img1.png)
+![img-description](/assets/img/OpenAI/img1.png)
 _OpenAI's API Settings_
 
 
 Once you have opened the web page, you will be able to generate the API key that can be used to integrate with the OpenAI API:
 
 
-![img-description](/assets/img/OpenAi/img2.png)
+![img-description](/assets/img/OpenAI/img2.png)
 _Generating an API key_
 
 
@@ -61,7 +61,7 @@ _Generating an API key_
 
 To create an initial python script, I wanted to see how good the ChatGPT was at producing information so I started with asking ChatGPT to create a python script to interact with itself: 
 
-![img-description](/assets/img/OpenAi/img3.png)
+![img-description](/assets/img/OpenAI/img3.png)
 _OpenAI's ChatGPT creating a Python script'_
 
 Much to my surprise it did pretty well as it would not take a ton of work to get it into a functional state. I have provided the script below:
@@ -163,5 +163,5 @@ The snowflakes come down,
 On this Christmas night.
 ```
  
-![img-description](/assets/img/OpenAi/img4.png)
+![img-description](/assets/img/OpenAI/img4.png)
 _DALL-E Generated Images_
