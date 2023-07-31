@@ -43,3 +43,5 @@ The <a href="{{site.baseurl}}/walkthroughs/">Walkthroughs Section</a> includes m
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="44325999-f683-441a-8358-11ad6d692573" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 
+<!-- CCSP -->
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="5d233931-31d1-4bac-9a89-8b44db704fff" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
