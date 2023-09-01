@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 2
 ---
 
-I am currently a Cloud Security Researcher at [eSentire](https://www.esentire.com/) focusing on the implementation of detective security controls for eSentire's XDR solution. In particular, I am focusing on creating Novel Multi-Signal Threat Detectors coupled with appropriate response actions across cloud and container based environments.
+I am currently a Cloud Security Researcher at [eSentire](https://www.esentire.com/) focusing on the implementation of detective security controls for eSentire's XDR solution. In particular, I am focusing on creating threat detections across all major cloud providers and container based environments.
 
 I hold a Honour's Degree in Computer Science from the University of Pretoria, and international certifications such as OSCP, CRT, AWS SAA and more, which are linked [below](#accreditations).
 
