@@ -4,15 +4,17 @@ icon: fas fa-info-circle
 order: 2
 ---
 
-I am currently a Cloud Security Researcher at [eSentire](https://www.esentire.com/) focusing on the implementation of detective security controls for eSentire's XDR solution. In particular, I am focusing on creating threat detections across all major cloud providers and container based environments.
+I am currently the Lead Security Engineer within the Security Operations Team at [Wayfair](https://www.wayfair.com/), focusing on the improvement of Wayfair's security baseline through the implementation of preventative and detective security controls. In particular, I am focusing on automating and improving the SOC while improving my understanding of AI, GCP and Kubernetes.
 
 I hold a Honour's Degree in Computer Science from the University of Pretoria, and international certifications such as OSCP, CRT, AWS SAA and more, which are linked [below](#accreditations).
 
-Previous to eSentire, I was:
+Previous to Wayfair, I was:
 
 - A Senior Cyber Security Consultant at [MWR CyberSec](https://mwrcybersec.com/) (previously F-Secure Consulting), with a focus on delivering strategic Cloud and Active Directory (AD) based assessments. The assessments encompassed all aspects within the Cyber Kill-Chain across large corporate networks and environments in order to provide meaningful security hardening recommendations. 
 
 - Security Operations Centre (SOC) manager for a large financial institution in South Africa, my responsibilities included the day-to-day management of the SOC, and consolidating and improving the effectiveness of the security monitoring capability through the design and implementation of a transformation roadmap spanning people, processes and technology. 
+
+- Cloud Security Researcher at [eSentire](https://esentire.com/) focusing on the implementation of detective security controls for eSentire’s XDR solution. In particular, I was responsible for determining the cloud security roadmap for eSentire and then creating threat detections across all major cloud providers and container based environments based on the roadmap.
 
 ## Blog Posts
 
