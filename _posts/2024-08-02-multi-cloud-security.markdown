@@ -1,5 +1,5 @@
 ---
-title: Diving into Multi Cloud Roadmaps
+title: Diving into Multi Cloud Security Frameworks
 author: kyhle
 date: 2024-08-02 12:00:00 +0200
 categories: [InfoSec, Non-Technical]
