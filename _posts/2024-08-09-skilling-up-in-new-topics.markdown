@@ -13,7 +13,7 @@ image:
 
 # Introduction
 
-I was recently asked about methods that I use to learn new topics (tools / platforms / technologies, etc.). The question itself seemed simple to answer, "I just read about the topic and look for blogs explaining the issues with it", but that answer did not actually convey anything that someone else could use in their day-to-day to skill up in different topics. It also was not an accurate depiction of the methods that I use when I try to skill up in a new topic. 
+I was recently asked about methods that I use to learn new topics (tools / platforms / technologies, etc.). The question itself seemed simple to answer, "I just read about the topic and look for blogs explaining the issues with it", but that answer did not actually convey anything that someone else could use in their day-to-day to skill up in different topics. It was also not an accurate depiction of the methods that I use when I try to skill up in a new topic. 
 
 I (fortunately?) have a consulting background, during which time I was required to: context switch constantly, pick up new topics, including; tools, techniques, processes, technology, etc. on a whim, and provide subject matter expertise (SME) to clients based on my learnings. Based on my consulting background, I had not given much thought to methods I use learn about new topics, effectively, within a short timespan. I asked the person to sit down next to me while I guided them through my process and that led me to this post. This blog post details my process when it comes to learning about new topics, my recent undertaking of learning more about GCP, and advice on getting started. 
 
@@ -65,7 +65,7 @@ Look into GCP documentation:
 ## Note Taking and Getting Hands-On
 
 Based on the main categories, I then created sections within my note taking tool and started diving into what I wanted to learn by: 
-- Dividing categories into nto sub categories and actionable hands-on items
+- Dividing categories into sub categories and actionable hands-on items
 - Finding relevant documentation
 - Taking notes and clicking around the platform
 
