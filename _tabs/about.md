@@ -8,22 +8,28 @@ I am currently the Lead Security Engineer within the Security Response Team at [
 
 I hold a Honour's Degree in Computer Science from the University of Pretoria, and international certifications such as OSCP, CRT, AWS SAA and more, which are linked [below](#accreditations).
 
-Previous to Wayfair, I was:
+Prior to Wayfair, my work experience consisted of:
 
 - Cloud Security Researcher at [eSentire](https://esentire.com/) focusing on the implementation of detective security controls for eSentire’s XDR solution. In particular, I was responsible for determining the cloud security roadmap for eSentire and then creating threat detections across all major cloud providers and container based environments based on the roadmap.
 
-- A Senior Cyber Security Consultant at [MWR CyberSec](https://mwrcybersec.com/) (previously F-Secure Consulting), with a focus on delivering strategic Cloud and Active Directory (AD) based assessments. The assessments encompassed all aspects within the Cyber Kill-Chain across large corporate networks and environments in order to provide meaningful security hardening recommendations. 
+- A Senior Cyber Security Consultant at [MWR CyberSec](https://mwrcybersec.com/) (previously F-Secure Consulting), with a focus on delivering strategic Cloud and Active Directory (AD) based security assessments. The assessments encompassed all aspects within the Cyber Kill-Chain across large corporate networks and environments in order to provide meaningful security hardening recommendations. 
 
 - Security Operations Centre (SOC) manager for a large financial institution in South Africa, my responsibilities included the day-to-day management of the SOC, and consolidating and improving the effectiveness of the security monitoring capability through the design and implementation of a transformation roadmap spanning people, processes and technology. 
 
+## Favourite Quote
+My favourite quote is from former Coca-Cola CEO, Bryon Dyson:
+
+> Imagine life as a game in which you are juggling some five balls in the air. You name them — work, family, health, friends and spirit — and you’re keeping all of these in the air.
+> 
+> You will soon understand that work is a rubber ball. If you drop it, it will bounce back.
+> 
+> But the other four balls — family, health, friends and spirit — are made of glass. If you drop one of these, they will be irrevocably scuffed, marked, nicked, damaged or even shattered. They will never be the same.
+> 
+> You must understand that and strive for balance in your life
 
 ## Blog Posts
 
 I blog about cyber security, mental wellbeing, my take on the industry, and I am currently working on Blue Team focused blog posts. My blog posts can be found on the <a href="{{site.baseurl}}/">main page</a> or a listing per category is provided <a href="{{site.baseurl}}/categories/">here</a>. I've tried to add the correct tags to each of the posts so that they can easily be identified by their categories. If you enjoy my blog please feel free to reach out to me.  
-
-<!-- <h2> Walkthroughs </h2>
-
-The <a href="{{site.baseurl}}/walkthroughs/">Walkthroughs Section</a> includes my base configuration for a Linux pentesting machine, how I generally approach Challenge VMs, as well as each Challenge VM writeups that I have completed for <a href="https://www.hackthebox.eu">HackTheBox</a>. Each writeup will be available once the machine is retired from active rotation as per the regulations set out by HackTheBox, but you are more than welcome to reach out to me with questions about any machine that is on the list. -->
 
 ## Accreditations
 
