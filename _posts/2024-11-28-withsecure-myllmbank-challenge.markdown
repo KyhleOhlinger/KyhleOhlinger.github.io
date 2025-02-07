@@ -2,7 +2,7 @@
 title: WithSecure AI Challenge - My LLM Bank
 author: kyhle
 date: 2024-11-28 12:00:00 +0200
-categories: [InfoSec, Technical]
+categories: [AI & LLMs, Technical]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/ai_ctf.png
