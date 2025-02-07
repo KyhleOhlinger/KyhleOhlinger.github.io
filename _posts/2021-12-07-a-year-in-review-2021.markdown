@@ -2,7 +2,7 @@
 title: 2021&#58; A Year in Review 
 author: kyhle
 date: 2021-12-07 12:00:00 +0200
-categories: [Wellbeing, Non-Technical]
+categories: [Reflections]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/2021.jpg

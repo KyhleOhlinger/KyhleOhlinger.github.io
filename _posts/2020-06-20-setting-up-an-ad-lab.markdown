@@ -2,7 +2,7 @@
 title: Setting up a Basic AD Lab Environment
 author: kyhle
 date: 2020-06-24 12:00:00 +0200
-categories: [InfoSec, Non-Technical]
+categories: [Technical, Windows]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/active-directory.png
@@ -10,7 +10,6 @@ image:
   height: 500
 
 --- 
-
 
 I wasn't going to be making a post on this topic, but since a few of my posts refer back to having a domain set up, I thought it would be useful to explain the process of setting up your own local testing environment in the event that you find yourself wanting to play around with Active Directory (AD). I've come across a lot of examples of how to set up AD environments using PowerShell one-liners, various vagrant files, and any other automation tactics that you can think of, but one thing that seems to have fallen away has been people setting up their AD lab environments manually. 
 

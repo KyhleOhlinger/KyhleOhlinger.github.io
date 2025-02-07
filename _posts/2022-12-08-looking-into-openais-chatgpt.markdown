@@ -2,7 +2,7 @@
 title: Looking into OpenAI's ChatGPT
 author: kyhle
 date: 2022-12-08 12:00:00 +0200
-categories: [AI & LLMs, Technical]
+categories: [Technical, AI & LLMs]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/ai.jpeg

@@ -2,7 +2,7 @@
 title: Querying Vertex AI Model Usage through GCP Observability Metrics
 author: kyhle
 date: 2025-01-31 12:00:00 +0200
-categories: [GCP, Technical]
+categories: [Technical, Google Cloud Platform]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/GCP/gcp.png

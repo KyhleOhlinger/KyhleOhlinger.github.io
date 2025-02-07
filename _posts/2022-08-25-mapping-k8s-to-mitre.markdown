@@ -2,7 +2,7 @@
 title: Mapping K8s to MITRE ATT&CK IDs
 author: kyhle
 date: 2022-08-25 12:00:00 +0200
-categories: [InfoSec, Non-Technical]
+categories: [Technical, Detection Engineering]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/K8Matrix.png

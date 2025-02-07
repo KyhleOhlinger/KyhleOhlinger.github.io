@@ -2,7 +2,7 @@
 title: From Curiosity to Creativity&#58; My Thoughts on Prompt Engineering
 author: kyhle
 date: 2024-12-02 12:00:00 +0200
-categories: [AI & LLMs, Technical]
+categories: [Technical, AI & LLMs]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/prompt_engineering.jpg

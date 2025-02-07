@@ -2,7 +2,7 @@
 title: Automation Series Part 2&#58; Creating Bots
 author: kyhle
 date: 2020-08-21 12:00:00 +0200
-categories: [Automation_Series]
+categories: [Technical, Automation Series]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/mystery.jpg

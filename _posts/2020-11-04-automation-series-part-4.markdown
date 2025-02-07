@@ -2,7 +2,7 @@
 title: Automation Series Part 4&#58; Setting up Cortex
 author: kyhle
 date: 2020-11-04 12:00:00 +0200
-categories: [Automation_Series]
+categories: [Technical, Automation Series]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/mystery.jpg

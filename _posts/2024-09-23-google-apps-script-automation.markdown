@@ -2,7 +2,7 @@
 title: Leveraging Google Apps Script for Workflow Automation
 author: kyhle
 date: 2024-09-23 12:00:00 +0200
-categories: [InfoSec, Technical]
+categories: [Technical, Google Workspace]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/google-apps-script.jpg

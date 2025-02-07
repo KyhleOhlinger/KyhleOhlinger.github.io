@@ -2,7 +2,7 @@
 title: Blue Team Series Part 1&#58; What is a SOC?
 author: kyhle
 date: 2022-05-12 10:00:00 -0400
-categories: [Blue_Team_Series]
+categories: [Technical, Blue Team Series]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/soc.jpg
