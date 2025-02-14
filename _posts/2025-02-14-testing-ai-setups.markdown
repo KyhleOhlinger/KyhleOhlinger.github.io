@@ -29,7 +29,7 @@ If you want a more in-depth breakdown of Key Terminology within the field of Cha
 During my research, I tested out a number of new tools and my current setup includes:
 - **ChatGPTs:** I mostly use Gemini models through Vertex AI
 - **AI-Assisted Code Editors:** I recently switched from VS Code to Cursor and I've enjoyed the change thusfar
-- **AI Agent Frameworks:** Most of my prompts are in the style of [Fabric patterns](https://github.com/danielmiessler/fabric/tree/main/patterns) and I haven't found a framework that reliably uses the patterns at this point.
+- **AI Agent Frameworks:** Most of my prompts are in the style of [Fabric patterns](https://github.com/danielmiessler/fabric/tree/main/patterns) and I haven't found a framework that reliably uses the patterns at this point (I am excited to test out Atomic Agents which will hopefully handle this use case).
 - While working with different frameworks, I have also looked into methods of hosting simple Python based web applications. One of my favourite applications is [Streamlit](https://streamlit.io/) - An open-source Python library for building interactive web applications and dashboards.
 
 The mockup below shows my current setup for AI Usage and how I generally interact with the different tools: 
@@ -63,16 +63,15 @@ AI agent frameworks provide the infrastructure for building autonomous systems t
 | **Tool**                                                | **Category**        | **Description**                                                                                                                                                               |
 | ------------------------------------------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [CrewAI](https://www.crewai.com/open-source)            | Multi-agent Systems | An open-source framework for multi-agent systems that allows multiple AI agents to collaborate on complex tasks.              |
-| [Langchain](https://www.langchain.com/)                 | Multi-agent Systems | A framework that simplifies building applications with large language models by managing tool integrations and orchestrating agent interactions.                              |
-| [Atomic Agents](https://github.com/BrainBlend-AI/atomic-agents)                  | Multi-agent Systems           | Lightweight and modular framework for building Agentic AI pipelines and application.                                     |
-
+| [Langchain](https://www.langchain.com/)                 | Multi-agent Systems | A framework that simplifies building applications with large language models by managing tool integrations and orchestrating agent interactions.                             
 
 ### Additional Tooling
-Finally, the table below include tools that I plan on using in the future:
+Finally, the table below include tools that I plan on testing (and hopefully using) in the future:
 
 | **Tool**                                                     | **Category**                       | **Description**                                                                                                                                      |
 | ------------------------------------------------------------ | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Fabric](https://github.com/danielmiessler/fabric/tree/main) | Deployment Tool / Fleet Management | A Python-based framework designed to enable everyone to granularly apply AI to everyday challenges.            |
+| [Atomic Agents](https://github.com/BrainBlend-AI/atomic-agents)                  | Multi-agent Systems           | Lightweight and modular framework for building Agentic AI pipelines and application.                                     |
 | [n8n](https://n8n.io/)                                       | Automation Tool                    | An open-source automation platform that enables users to build custom workflows connecting various apps and services without heavy coding.           |
 
 
