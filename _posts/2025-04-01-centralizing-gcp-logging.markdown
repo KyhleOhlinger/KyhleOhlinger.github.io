@@ -212,6 +212,11 @@ resource "google_logging_project_sink" "storage_sink" {
 }
 ```
 
+Once this has been enabled, a Storage Bucket should be created in your new GCP project!
+
+![img-description](/assets/img/GCP/Logging_Project/20241213160226.png)
+_Cloud Logs Storage Bucket in the New GCP Project_
+
 As with the Storage Bucket, the codeblock below shows how we can create a BigQuery sink for our new GCP project:
 
 ```hcl
@@ -257,13 +262,9 @@ Once this has been enabled, a BigQuery table should be created in your project!
 _Security Logs sent to the new GCP Project's BigQuery instance_
 
 # Sending Logs to the Central Logging Project
-The code required to send the logs to a centralized source is almost identical to the per-project logging. The main difference being that you need to modify the `admin_project_id` variable to the `project_id` of the central logging project's ID and everything should automatically connect. 
+The code required to send the logs to a centralized source is almost identical to the per-project logging. The main difference being that you need to modify the `admin_project_id` variable to the `project_id` of the central logging project's ID and everything should automatically connect. To confirm that it is working as expected, you can navigate to the Logging Router within the new GCP project and confirm that 4 manually created log sinks exist within the new project.
 
 Within GCP, you should now be able to navigate to your newly created project, create resources, etc. and the activity will be logged and shared with the central administrative project. Additionally, the `tfstate` file associated with this new project will be stored within your Administration project which is not accessible (by default) to user's within the new project!
-
-![img-description](/assets/img/GCP/Logging_Project/20241213160226.png)
-_Cloud Logs Storage Bucket in the New GCP Project_
-
 
 # Setting up Project Billing 
 
