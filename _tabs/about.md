@@ -51,6 +51,8 @@ I blog about cyber security, mental wellbeing, my take on the industry, and I am
 <!-- SSCP -->
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="44325999-f683-441a-8358-11ad6d692573" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
-
 <!-- CCSP -->
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="5d233931-31d1-4bac-9a89-8b44db704fff" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+<!-- GCP PCSE -->
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="11f61798-98b8-4aab-a8a9-7a0549527655" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
