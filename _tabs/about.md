@@ -36,6 +36,16 @@ I blog about cyber security, mental wellbeing, my take on the industry, and I am
 >In addition to the badges below, I have also obtained the CREST CRT and CPSA accreditations, but I cannot find a way to retrieve a digital badge for them.
 {: .prompt-info }
 
+
+<!-- GCP PCSE -->
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="11f61798-98b8-4aab-a8a9-7a0549527655" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+<!-- CCSP -->
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="5d233931-31d1-4bac-9a89-8b44db704fff" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+<!-- SSCP -->
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="44325999-f683-441a-8358-11ad6d692573" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
 <!-- AWS SAA -->
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="6eaf7f05-7ec9-4295-9630-ab9323884a0d" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
@@ -47,12 +57,3 @@ I blog about cyber security, mental wellbeing, my take on the industry, and I am
 
 <!-- OSCP -->
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b6d18dc8-210d-47a0-9f3d-e0ba9ae46914" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-
-<!-- SSCP -->
-<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="44325999-f683-441a-8358-11ad6d692573" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-
-<!-- CCSP -->
-<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="5d233931-31d1-4bac-9a89-8b44db704fff" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-
-<!-- GCP PCSE -->
-<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="11f61798-98b8-4aab-a8a9-7a0549527655" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
