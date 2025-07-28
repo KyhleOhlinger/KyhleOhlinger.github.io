@@ -36,6 +36,8 @@ I blog about cyber security, mental wellbeing, my take on the industry, and I am
 >In addition to the badges below, I have also obtained the CREST CRT and CPSA accreditations, but I cannot find a way to retrieve a digital badge for them.
 {: .prompt-info }
 
+<!-- GCP Bootcamp - PwnedLabs -->
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="8e7dc7a8-1607-4d50-a779-3838f18b973e" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 <!-- GCP PCSE -->
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="11f61798-98b8-4aab-a8a9-7a0549527655" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
