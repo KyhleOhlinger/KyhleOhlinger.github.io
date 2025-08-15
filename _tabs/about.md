@@ -10,9 +10,9 @@ I hold a Honour's Degree in Computer Science from the University of Pretoria, an
 
 Prior to Wayfair, my work experience consisted of:
 
-- Cloud Security Researcher at [eSentire](https://esentire.com/) focusing on the implementation of detective security controls for eSentire’s XDR solution. In particular, I was responsible for determining the cloud security roadmap for eSentire and then creating threat detections across all major cloud providers and container based environments based on the roadmap.
+- Cloud Security Researcher at [eSentire](https://esentire.com/) focusing on the implementation of detective security controls for eSentire’s XDR solution. In particular, I was responsible for determining the cloud security roadmap for eSentire and then creating threat detections across all major cloud providers and container based environments.
 
-- A Senior Cyber Security Consultant at [MWR CyberSec](https://mwrcybersec.com/) (previously F-Secure Consulting), with a focus on delivering strategic Cloud and Active Directory (AD) based security assessments. The assessments encompassed all aspects within the Cyber Kill-Chain across large corporate networks and environments in order to provide meaningful security hardening recommendations. 
+- Senior Cyber Security Consultant at [MWR CyberSec](https://mwrcybersec.com/) (previously F-Secure Consulting), with a focus on delivering strategic Cloud and Active Directory (AD) based security assessments. The assessments encompassed all aspects within the Cyber Kill-Chain across large corporate networks and environments in order to provide meaningful security hardening recommendations. 
 
 - Security Operations Centre (SOC) manager for a large financial institution in South Africa, my responsibilities included the day-to-day management of the SOC, and consolidating and improving the effectiveness of the security monitoring capability through the design and implementation of a transformation roadmap spanning people, processes and technology. 
 
