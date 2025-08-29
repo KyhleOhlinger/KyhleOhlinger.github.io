@@ -2,7 +2,7 @@
 title: Creating a Chrome Extension to Query Multiple LLMs
 author: kyhle
 date: 2025-08-29 12:00:00 +0200
-categories: [Technical, Random]
+categories: [Technical, AI & LLMs]
 description: Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :) 
 image:
   path: /assets/img/chrome_extensions.jpg
