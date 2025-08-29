@@ -1,0 +1,769 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="Leveraging Google Apps Script for Workflow Automation" /><meta name="author" content="Kyhle Öhlinger" /><meta property="og:locale" content="en" /><meta name="description" content="Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :)" /><meta property="og:description" content="Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :)" /><link rel="canonical" href="https://ohlinger.co/posts/google-apps-script-automation/" /><meta property="og:url" content="https://ohlinger.co/posts/google-apps-script-automation/" /><meta property="og:site_name" content="Kyhle Öhlinger" /><meta property="og:image" content="https://ohlinger.co/assets/img/google-apps-script.jpg" /><meta property="og:image:height" content="500" /><meta property="og:image:width" content="800" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2024-09-23T06:00:00-04:00" /><meta name="twitter:card" content="summary_large_image" /><meta property="twitter:image" content="https://ohlinger.co/assets/img/google-apps-script.jpg" /><meta property="twitter:title" content="Leveraging Google Apps Script for Workflow Automation" /><meta name="twitter:site" content="@KyhleO" /><meta name="twitter:creator" content="@KyhleO" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kyhle Öhlinger","url":"https://github.com/KyhleOhlinger/"},"dateModified":"2025-02-07T16:20:24-05:00","datePublished":"2024-09-23T06:00:00-04:00","description":"Hi all, My name is Kyhle Öhlinger and this blog post forms part of my personal blog. If you enjoy any of the posts, feel free to reach out and let me know :)","headline":"Leveraging Google Apps Script for Workflow Automation","image":{"width":800,"height":500,"url":"https://ohlinger.co/assets/img/google-apps-script.jpg","@type":"imageObject"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ohlinger.co/posts/google-apps-script-automation/"},"url":"https://ohlinger.co/posts/google-apps-script-automation/"}</script><title>Leveraging Google Apps Script for Workflow Automation | Kyhle Öhlinger</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="Kyhle Öhlinger"><meta name="application-name" content="Kyhle Öhlinger"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> <img src="/assets/img/Kyhle_Icon.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">Kyhle Öhlinger</a></div><div class="site-subtitle font-italic">Lead Security Engineer</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <button class="mode-toggle btn" aria-label="Switch Mode"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/KyhleOhlinger" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/KyhleO" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['kyhle','ohlinger.co'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="https://www.linkedin.com/in/kyhleohlinger" aria-label="linkedin" target="_blank" rel="noopener"> <i class="fab fa-linkedin"></i> </a></div></div><div id="topbar-wrapper"><div id="topbar" class="container d-flex align-items-center justify-content-between h-100 pl-3 pr-3 pl-md-4 pr-md-4"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>Leveraging Google Apps Script for Workflow Automation</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper" class="d-flex justify-content-center"><div id="main" class="container pl-xl-4 pr-xl-4"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-9 pr-xl-4"><div class="post pl-1 pr-1 pl-md-2 pr-md-2"><h1 data-toc-skip>Leveraging Google Apps Script for Workflow Automation</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1727085600" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Sep 23, 2024 </em> </span><div class="mt-3 mb-3"> <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3C/svg%3E" data-src="/assets/img/google-apps-script.jpg" class="preview-img bg" alt="Preview Image" width="800" height="500" data-proofer-ignore></div><div class="d-flex justify-content-between"> <span> By <em> <a href="https://github.com/KyhleOhlinger/">Kyhle Öhlinger</a> </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3536 words"> <em>19 min</em> read</span></div></div></div><div class="post-content"><p>In today’s cloud-driven environment, automation plays a critical role in optimizing workflows and enhancing operational efficiency by minimizing manual interaction. Manual tasks, especially when dealing with sensitive data, introduce risks such as human error, data mismanagement, and inefficiencies. By automating processes such as email notifications, data synchronization, and report generation, we can reduce the reliance on manual intervention, enhancing both productivity and security.</p><p>Google Apps Script is a cloud-based scripting language developed by Google that allows you to automate tasks across Google Workspace apps like Gmail, Docs, Sheets, and Drive. In this post, I will dive in to the methods that I have leveraged within Google Apps Script to automate manual tasks and hopefully provide you with a few interesting methods that you can use to automate workflows.</p><h2 id="what-can-google-apps-script-do"><span class="mr-2">What can Google Apps Script do?</span><a href="#what-can-google-apps-script-do" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Before we look into how I used Google Apps Script, it’s important to understand where Google Apps Script can be useful. As per Google’s <a href="https://developers.google.com/apps-script/overview">documentation</a>, Google Apps Script is <em>“a rapid application development platform that makes it fast and easy to create business applications that integrate with Google Workspace. You write code in modern JavaScript and have access to built-in libraries for favorite Google Workspace applications like Gmail, Calendar, Drive, and more.”</em></p><p>Google Apps Script has a wide range of use cases, especially for automating tasks and integrating Google Workspace services - I have listed a few common scenarios below:</p><ol><li><strong>Automating Google Sheets Workflows</strong><ul><li><strong>Data Collection and Analysis</strong>: Automatically import data from APIs or external sources into Google Sheets, process the data, and generate reports.<li><strong>Scheduled Updates</strong>: Set up scripts to update data in sheets periodically, such as refreshing stock prices or sales data.<li><strong>Conditional Formatting and Alerts</strong>: Automatically apply formatting based on specific conditions or send email alerts when certain thresholds are met.</ul><li><strong>Managing Gmail Automation</strong><ul><li><strong>Email Filters and Categorization</strong>: Automatically sort, label, and archive incoming emails based on predefined criteria, helping to maintain an organized inbox.<li><strong>Scheduled Email Reminders</strong>: Send automatic follow-up emails or reminders based on calendar events or custom triggers.<li><strong>Mass Emailing</strong>: Use Apps Script to automate sending bulk personalized emails, such as newsletters or marketing campaigns.</ul><li><strong>Google Calendar Management</strong><ul><li><strong>Event Scheduling</strong>: Automate the creation of calendar events from Google Forms submissions or specific actions in Google Sheets.<li><strong>Automated Notifications</strong>: Set up reminders or notifications before important deadlines, meetings, or recurring tasks.<li><strong>Calendar Data Export</strong>: Automatically pull event details from Google Calendar and export them to Google Sheets for reporting purposes.</ul><li><strong>Custom Google Drive Management</strong><ul><li><strong>Automated File Organization</strong>: Automatically move, rename, or organize files based on specific conditions, like sorting invoices into folders by date.<li><strong>File Sharing and Permissions Management</strong>: Set up scripts to change file permissions, share documents, or revoke access at certain times.<li><strong>Backup Processes</strong>: Create automated backups of Google Sheets or Docs to specific Google Drive folders.</ul><li><strong>Form Data Processing</strong><ul><li><strong>Automated Responses</strong>: Automatically send personalized email responses after someone submits a Google Form.<li><strong>Data Validation</strong>: Validate form submissions in real-time and reject or flag invalid data.<li><strong>Form-Triggered Workflows</strong>: When a Google Form is submitted, trigger actions such as updating a Google Sheet, sending an email, or creating a calendar event.</ul><li><strong>External API Integration</strong><ul><li><strong>Pulling Data from External APIs</strong>: Fetch data from third-party APIs (e.g., weather, stock data, or social media metrics) and use it in Google Sheets or other Workspace services.<li><strong>Pushing Data to External Systems</strong>: Integrate with CRM or ERP systems to push data from Google Workspace to external business tools.</ul><li><strong>Custom Dashboard and Reporting Tools</strong><ul><li><strong>Automated Reports</strong>: Create scheduled reports, such as weekly sales summaries or performance metrics, and send them to stakeholders as Google Docs, Sheets, or PDFs.<li><strong>Interactive Dashboards</strong>: Build custom dashboards within Google Sheets to visualize real-time data from various sources.</ul></ol><p>These examples highlight a few examples where languages like Google Apps Script can be tailored for various use cases, from simple tasks such as organizing email to complex automation and integrations with external APIs. In my opinion, the main benefit of any of these use cases relate to <strong>Repetitive Task Automation</strong>. This allows you to eliminate the need for manual input by automating tasks such as data entry, document generation, or copying files.</p><h1 id="how-to-get-started">How to Get Started</h1><p>The method that I used to get started was to just dive in to the documents and start coding, but that may not be the best method for everyone. This blog post is not meant to be a full crash course in JavaScript but, fortunately, Google has pretty good documentation on this topic as well as some coding labs to help you get started:</p><ul><li><a href="https://developers.google.com/apps-script/samples">Apps Script Samples</a><li><a href="https://developers.google.com/apps-script/samples/fundamentals-codelabs">Code Labs</a><li><a href="https://developers.google.com/apps-script/guides/dashboard">Developer Docs</a></ul><p>Once you are happy with your ability to create JavaScript functions, you will be able to execute the functions against the Apps Script API. There are several methods which you can use to do this, <em>I would suggest starting with the Apps Script Editor to test out your code</em>. Once you have a script, you need to run it using <strong>Trigger-Based Actions</strong> - these will allow you to automatically execute tasks at specific times or in response to user activity. Google Apps Script makes use of the following Trigger Types:</p><ul><li><strong>Add On</strong>: The execution originated from an add-on.<li><strong>Execution API</strong>: The execution originated from an invocation of the Apps Script API.<li><strong>Time Driven</strong>: The execution was caused by a time event.<li><strong>Trigger</strong>: The execution originated from a trigger source.<li><strong>Webapp</strong>: The execution originated from a deployed web app.<li><strong>Editor</strong>: The execution originated from the Apps Script editor.</ul><blockquote class="prompt-info"><div><p>I have only used Apps Script as standalone scripts which have different deployment / trigger options than writing these scripts in Google documents.</p></div></blockquote><h2 id="important-concepts"><span class="mr-2">Important Concepts</span><a href="#important-concepts" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Regardless of coding language, I believe that being able to reuse code is essential. Therefore, within the code that I have provided in this blog post, I have used two concepts that I think everyone should use:</p><ul><li><strong>Global Variables:</strong> Common variables that you will use throughout the script<li><strong>Functions:</strong> Modules which can be called from other functions within the script</ul><p>These two concepts not only make it easier to reuse code, but it also ensures that the code is maintainable. The excerpt below shows how to create functions and call global variables using JavaScript:</p><div class="language-javascript highlighter-rouge"><div class="code-header"> <span data-label-text="JavaScript"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">globalVariables</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">variables</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Important File</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">google_sheet_link</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://docs.google.com/spreadsheets/d/&lt;ID&gt;/edit?gid=0#gid=0</span><span class="dl">"</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">variables</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">triggerEvents</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Retrieving Global Variable - Google Sheet Link: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">globalVariables</span><span class="p">().</span><span class="nx">google_sheet_link</span><span class="p">);</span>
+    
+<span class="p">}</span>
+</pre></table></code></div></div><p>Now that you have a basic understanding, let’s dive in to the first example, updating an existing Google Sheet.</p><h2 id="example-1---creating-new-columns-in-a-google-sheet"><span class="mr-2">Example 1 - Creating New Columns in a Google Sheet</span><a href="#example-1---creating-new-columns-in-a-google-sheet" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li><strong>Reason:</strong> Current process is manual and I need to Create new columns with a new date every week<li><strong>Task:</strong> Automate the creation of new columns on a weekly basis</ul><p>The screenshot below shows the example Google sheet that I was manually updating, the idea is to create 3 new columns on a weekly basis (scheduled every Friday between 3pm-4pm) for the following week.</p><p><img data-src="/assets/img/AppsScript/20240910154859.png" alt="img-description" data-proofer-ignore> <em>Google Sheet - Copy Columns</em></p><p>To accomplish this, I needed to do the following:</p><ol><li>Identify the correct spreadsheet (in this case the <code class="language-plaintext highlighter-rouge">google_sheet_link</code>)<li>Get the date / date range that I want to provide in the columns<li>Insert new columns based on current column requirements<li>Insert the required column title information and match the format to the other columns within the document.</ol><p>The script that I created to accomplish this (with comments) is provided below:</p><div class="language-javascript highlighter-rouge"><div class="code-header"> <span data-label-text="JavaScript"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+</pre><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">globalVariables</span><span class="p">(){</span>
+  <span class="c1">// This can be found in the URL (something like this: "https://drive.google.com/drive/folders/{entity-id}") visible when you open the directory of the Shared Drive</span>
+  <span class="c1">// To use a variable call: globalVariables().VARIABLENAME;, e.g. var soc_shared_folder_url = DriveApp.getFolderById(globalVariables().soc_shared_drive_id).getUrl();</span>
+  <span class="kd">var</span> <span class="nx">variables</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Project Updates</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">google_sheet_link</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://docs.google.com/spreadsheets/d/&lt;ID&gt;/edit?gid=0#gid=0</span><span class="dl">"</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">variables</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">triggerEvents</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Starting column copy process...</span><span class="dl">"</span><span class="p">);</span>
+
+  <span class="c1">// Get the current date (should be a Friday!)</span>
+  <span class="kd">var</span> <span class="nx">current_date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+  <span class="nx">current_date</span><span class="p">.</span><span class="nx">setDate</span><span class="p">(</span><span class="nx">current_date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">());</span>
+
+  <span class="c1">// Get the date of the following Monday</span>
+  <span class="kd">var</span> <span class="nx">next_monday</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+  <span class="nx">next_monday</span><span class="p">.</span><span class="nx">setDate</span><span class="p">(</span><span class="nx">current_date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">next_monday_string</span> <span class="o">=</span> <span class="nx">Utilities</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span><span class="nx">next_monday</span><span class="p">,</span> <span class="dl">"</span><span class="s2">EST</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MM/dd</span><span class="dl">"</span><span class="p">);</span>
+  
+  <span class="c1">// Get the date of the following Friday</span>
+  <span class="kd">var</span> <span class="nx">next_friday</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+  <span class="nx">next_friday</span><span class="p">.</span><span class="nx">setDate</span><span class="p">(</span><span class="nx">current_date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">+</span> <span class="mi">7</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">next_friday_string</span> <span class="o">=</span> <span class="nx">Utilities</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span><span class="nx">next_friday</span><span class="p">,</span> <span class="dl">"</span><span class="s2">EST</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MM/dd</span><span class="dl">"</span><span class="p">);</span>
+
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Monday: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">next_monday_string</span> <span class="o">+</span><span class="dl">"</span><span class="se">\n</span><span class="s2">Friday: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">next_friday_string</span><span class="p">)</span>
+  
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Inserting and Formatting new Columns...</span><span class="dl">"</span><span class="p">)</span>
+  <span class="c1">// Insert new columns for the following week</span>
+  <span class="nx">insertColumns</span><span class="p">(</span><span class="nx">next_monday_string</span><span class="p">,</span> <span class="nx">next_friday_string</span><span class="p">)</span>
+
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">New Columns Successfully Created...</span><span class="dl">"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">insertColumns</span><span class="p">(</span><span class="nx">next_monday_string</span><span class="p">,</span> <span class="nx">next_friday_string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Opens the spreadsheet file by its URL. If you created your script from within a</span>
+  <span class="c1">// Google Sheets file, you can use SpreadsheetApp.getActiveSpreadsheet() instead.</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Spreadsheet: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">globalVariables</span><span class="p">().</span><span class="nx">google_sheet_link</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">ss</span> <span class="o">=</span> <span class="nx">SpreadsheetApp</span><span class="p">.</span><span class="nx">openByUrl</span><span class="p">(</span><span class="nx">globalVariables</span><span class="p">().</span><span class="nx">google_sheet_link</span><span class="p">);</span>
+  
+  <span class="c1">// Gets a sheet by its name and insert 3 blank columns after the 3rd column</span>
+  <span class="kd">const</span> <span class="nx">sheet</span> <span class="o">=</span> <span class="nx">ss</span><span class="p">.</span><span class="nx">getSheetByName</span><span class="p">(</span><span class="dl">'</span><span class="s1">Updates</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">sheet</span><span class="p">.</span><span class="nx">insertColumnsAfter</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> 
+
+  <span class="c1">// The size of the two-dimensional array must match the size of the range. </span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> 
+  <span class="p">[</span>
+    <span class="p">[</span> 
+      <span class="dl">"</span><span class="s2">Plans</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span><span class="nx">next_monday_string</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> - </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">next_friday_string</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">Progress</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span><span class="nx">next_monday_string</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> - </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">next_friday_string</span><span class="p">,</span> 
+      <span class="dl">"</span><span class="s2">Problems / Blockers</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span><span class="nx">next_monday_string</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> - </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">next_friday_string</span> 
+    <span class="p">]</span>
+  <span class="p">];</span>
+
+  <span class="c1">// Get the range of the new columns and set the values</span>
+  <span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">sheet</span><span class="p">.</span><span class="nx">getRange</span><span class="p">(</span><span class="dl">"</span><span class="s2">D1:F1</span><span class="dl">"</span><span class="p">);</span> 
+  <span class="nx">range</span><span class="p">.</span><span class="nx">setValues</span><span class="p">(</span><span class="nx">values</span><span class="p">);</span>
+
+  <span class="c1">// Retrieve the formatting row / template row format</span>
+  <span class="kd">var</span> <span class="nx">RefCell</span> <span class="o">=</span> <span class="nx">sheet</span><span class="p">.</span><span class="nx">getRange</span><span class="p">(</span><span class="dl">"</span><span class="s2">G1</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//Cell G1 considered as reference for formatting</span>
+  
+  <span class="c1">//Copy formatting to the newly created columns</span>
+  <span class="nx">RefCell</span><span class="p">.</span><span class="nx">copyTo</span><span class="p">(</span><span class="nx">range</span><span class="p">,</span> <span class="p">{</span><span class="na">formatOnly</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
+
+  <span class="c1">// Get reference width and set the new column widths</span>
+  <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">sheet</span><span class="p">.</span><span class="nx">getColumnWidth</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+  <span class="nx">sheet</span><span class="p">.</span><span class="nx">setColumnWidths</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span> <span class="nx">width</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p>With the completed script in hand, I set a weekly (Time-based) trigger to run the <code class="language-plaintext highlighter-rouge">triggerEvents</code> function. I also created a slack workflow to remind the team to fill out the plans for the new week, thereby completely removing the manual work that I previously performed for this function. (If you are interested in the Slack workflow, feel free to message me!)</p><p><img data-src="/assets/img/AppsScript/20240910150626.png" alt="img-description" data-proofer-ignore> <em>Google Apps Script - Trigger Function</em></p><h2 id="example-2---copying-a-template-and-sending-a-slack-message"><span class="mr-2">Example 2 - Copying a Template and Sending a Slack Message</span><a href="#example-2---copying-a-template-and-sending-a-slack-message" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li><strong>Reason:</strong> My team uses a weekly meeting document and the copying / creation of this document was manual<li><strong>Task:</strong> Automate the copying of the previous week’s meeting document and rename the copy to reflect the current week. Additionally, send Slack reminders to the team to update the document.<li><strong>Additional Requirements:</strong> Requires a Slack App / method to use webhook</ul><p>To accomplish this, I needed to do the following:</p><ol><li>Get the current date and identify the previous document (in this case the <code class="language-plaintext highlighter-rouge">previous_filename</code>)<li>Create a copy of the document with a new name reflecting the new dates<li>Send a Slack message to the team</ol><p>The script that I created to accomplish this (with comments) is provided below:</p><div class="language-javascript highlighter-rouge"><div class="code-header"> <span data-label-text="JavaScript"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+</pre><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">globalVariables</span><span class="p">(){</span>
+  <span class="c1">// This can be found in the URL (something like this: "https://drive.google.com/drive/folders/{entity-id}") visible when you open the directory of the Shared Drive</span>
+  <span class="c1">// To use a variable call: globalVariables().VARIABLENAME;, e.g. var soc_shared_folder_url = DriveApp.getFolderById(globalVariables().soc_shared_drive_id).getUrl();</span>
+  <span class="kd">var</span> <span class="nx">variables</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">soc_shared_drive_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;ID&gt;</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">meeting_notes_folder_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;ID&gt;</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Weekly Meeting Agenda</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">slack_webhook</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://hooks.slack.com/services/&lt;ID&gt;</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">ppp_link</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://docs.google.com/spreadsheets/d/&lt;ID&gt;edit#gid=0</span><span class="dl">"</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">variables</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">triggerEvents</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Starting template creation process...</span><span class="dl">"</span><span class="p">);</span>
+
+  <span class="c1">// Get the date for the next weekly meeting</span>
+  <span class="kd">var</span> <span class="nx">current_date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+  <span class="nx">current_date</span><span class="p">.</span><span class="nx">setDate</span><span class="p">(</span><span class="nx">current_date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">current_date_string</span> <span class="o">=</span> <span class="nx">Utilities</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span><span class="nx">current_date</span><span class="p">,</span> <span class="dl">"</span><span class="s2">EST</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MM.dd.yy</span><span class="dl">"</span><span class="p">);</span>
+  
+  <span class="c1">// Get the date for the previous weekly meeting</span>
+  <span class="kd">var</span> <span class="nx">previous_date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+  <span class="nx">previous_date</span><span class="p">.</span><span class="nx">setDate</span><span class="p">(</span><span class="nx">previous_date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="mi">6</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">previous_date_string</span> <span class="o">=</span> <span class="nx">Utilities</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span><span class="nx">previous_date</span><span class="p">,</span> <span class="dl">"</span><span class="s2">EST</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MM.dd.yy</span><span class="dl">"</span><span class="p">);</span>
+
+  <span class="c1">// Create the filename based on the date of the next weekly meeting</span>
+  <span class="kd">var</span> <span class="nx">new_filename</span> <span class="o">=</span> <span class="nx">current_date_string</span> <span class="o">+</span><span class="dl">"</span><span class="s2"> -  </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">globalVariables</span><span class="p">().</span><span class="nx">filename</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">previous_filename</span> <span class="o">=</span> <span class="nx">previous_date_string</span> <span class="o">+</span><span class="dl">"</span><span class="s2"> -  </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">globalVariables</span><span class="p">().</span><span class="nx">filename</span><span class="p">;</span>
+
+  <span class="c1">// Create a copy of the previous weekly meeting</span>
+  <span class="kd">var</span> <span class="nx">file_url</span> <span class="o">=</span> <span class="nx">copyFile</span><span class="p">(</span><span class="nx">previous_filename</span><span class="p">,</span> <span class="nx">new_filename</span><span class="p">)</span>
+
+  <span class="c1">// Create a link from the file ID and send a slack message to the team</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Creating Slack message with URL: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">file_url</span><span class="p">)</span>
+  <span class="kd">var</span> <span class="nx">slack_message</span> <span class="o">=</span> <span class="nx">buildAlert</span><span class="p">(</span><span class="nx">file_url</span><span class="p">)</span>
+  <span class="nx">sendSlackMessage</span><span class="p">(</span><span class="nx">slack_message</span><span class="p">)</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">New File Successfully Created...</span><span class="dl">"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">copyFile</span><span class="p">(</span><span class="nx">previous_filename</span><span class="p">,</span> <span class="nx">new_filename</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Copying File...</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">previous_filename</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">meeting_notes_files</span> <span class="o">=</span> <span class="nx">DriveApp</span><span class="p">.</span><span class="nx">getFilesByName</span><span class="p">(</span><span class="nx">previous_filename</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">new_file</span> <span class="o">=</span> <span class="dl">""</span>
+
+  <span class="c1">// Get the previous file and create a new file</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nx">meeting_notes_files</span><span class="p">.</span><span class="nx">hasNext</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">meeting_notes_files</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">File with name: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">file</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="s2">URL: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">file</span><span class="p">.</span><span class="nx">getUrl</span><span class="p">())</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Name: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">file</span><span class="p">.</span><span class="nx">getName</span><span class="p">())</span>
+    <span class="nx">new_file</span> <span class="o">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">makeCopy</span><span class="p">(</span><span class="nx">new_filename</span><span class="p">,</span> <span class="nx">DriveApp</span><span class="p">.</span><span class="nx">getFolderById</span><span class="p">(</span><span class="nx">globalVariables</span><span class="p">().</span><span class="nx">meeting_notes_folder_id</span><span class="p">));</span>    
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">new_file</span><span class="p">.</span><span class="nx">getUrl</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">sendSlackMessage</span><span class="p">(</span><span class="nx">payload</span><span class="p">){</span>
+  <span class="c1">// Create a JSON payload and send to slack via webhook</span>
+  <span class="kd">const</span> <span class="nx">webhook</span> <span class="o">=</span> <span class="nx">globalVariables</span><span class="p">().</span><span class="nx">slack_webhook</span><span class="p">;</span> 
+  <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">method</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">post</span><span class="dl">"</span><span class="p">,</span> 
+    <span class="dl">"</span><span class="s2">contentType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span> 
+    <span class="dl">"</span><span class="s2">muteHttpExceptions</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> 
+    <span class="dl">"</span><span class="s2">payload</span><span class="dl">"</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span> 
+  <span class="p">};</span>
+  
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">UrlFetchApp</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="nx">webhook</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Options: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">options</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Build a slack message using markdown</span>
+<span class="kd">function</span> <span class="nx">buildAlert</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">message</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hey team, here is the link for tomorrow’s &lt;</span><span class="dl">"</span><span class="o">+</span><span class="nx">data</span><span class="o">+</span><span class="dl">"</span><span class="s2">|Meeting agenda&gt; and &lt;</span><span class="dl">"</span><span class="o">+</span><span class="nx">globalVariables</span><span class="p">().</span><span class="nx">ppp_link</span><span class="o">+</span><span class="dl">"</span><span class="s2">|OKR weekly PPP&gt; - please update it when you get a chance!</span><span class="dl">"</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Created Slack Message: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">message</span><span class="p">)</span>
+  <span class="kd">let</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">blocks</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">section</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">text</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+          <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mrkdwn</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">text</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">*Weekly Reminder*</span><span class="dl">"</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">divider</span><span class="dl">"</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">section</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">text</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+          <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mrkdwn</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">text</span><span class="dl">"</span><span class="p">:</span> <span class="nx">message</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">payload</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre></table></code></div></div><p>Using this method, I removed the requirement for a separate Slack workflow and automated the task through the use of a webhook.</p><h2 id="example-3---creating-a-web-deployment-to-automate-template-generation"><span class="mr-2">Example 3 - Creating a Web Deployment to Automate Template Generation</span><a href="#example-3---creating-a-web-deployment-to-automate-template-generation" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li><strong>Reason:</strong> When an investigation was required, the team needed to manually spin up new folders, copy over templates, etc.<li><strong>Task:</strong> Automate the creation of new investigation folders and copy the templates to the new folder<li><strong>Additional Requirements:</strong> Requires a basic frontend / web app</ul><p>To accomplish this, I needed to do the following:</p><ol><li>Create a Basic Web App to Trigger the use case (<code class="language-plaintext highlighter-rouge">index.html</code>)<li>Get the user input from the web app<li>Create a new folder in the current year for the incident (or create a new year folder if it doesn’t exist)<li>Copy the templates to the new folder<li>Update the web app with a link to the new folder</ol><p>The script that I created to accomplish this (with comments) is provided below:</p><div class="language-javascript highlighter-rouge"><div class="code-header"> <span data-label-text="JavaScript"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+</pre><td class="rouge-code"><pre><span class="c1">// Basic web app functions</span>
+<span class="kd">function</span> <span class="nx">doGet</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">HtmlService</span><span class="p">.</span><span class="nx">createTemplateFromFile</span><span class="p">(</span><span class="dl">'</span><span class="s1">index</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">evaluate</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">include</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">HtmlService</span><span class="p">.</span><span class="nx">createHtmlOutputFromFile</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">getContent</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Update the form (web app) with the location of the created folder</span>
+<span class="kd">function</span> <span class="nx">processForm</span><span class="p">(</span><span class="nx">formObject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">formBlob</span> <span class="o">=</span> <span class="nx">formObject</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">folder_url</span> <span class="o">=</span> <span class="nx">triggerEvents</span><span class="p">(</span><span class="nx">formBlob</span><span class="p">.</span><span class="nx">investigation_ticket</span><span class="p">)</span>
+  <span class="k">return</span> <span class="dl">"</span><span class="s2">Template creation process has been completed! &lt;br&gt;&lt;br&gt;The templates can be found here: &lt;a href=</span><span class="dl">"</span><span class="o">+</span><span class="nx">folder_url</span><span class="o">+</span><span class="dl">"</span><span class="s2">&gt;</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">formBlob</span><span class="p">.</span><span class="nx">investigation_ticket</span> <span class="o">+</span><span class="dl">"</span><span class="s2">&lt;/a&gt;</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">globalVariables</span><span class="p">(){</span>
+  <span class="c1">// This can be found in the URL (something like this: "https://drive.google.com/drive/folders/{entity-id}") visible when you open the directory of the Shared Drive</span>
+  <span class="c1">// To use a variable call: globalVariables().VARIABLENAME;, e.g. var soc_shared_folder_url = DriveApp.getFolderById(globalVariables().soc_shared_drive_id).getUrl();</span>
+  <span class="kd">var</span> <span class="nx">variables</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">soc_shared_drive_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;ID&gt;</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">investigations_folder_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;ID&gt;</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">templates_folder_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;ID&gt;</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">ir_investigation_templates</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;ID&gt;</span><span class="dl">"</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">variables</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">triggerEvents</span><span class="p">(</span><span class="nx">investigation_ticket</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Starting template creation process...</span><span class="dl">"</span><span class="p">);</span>
+  
+  <span class="c1">// Get incident name from the trigger</span>
+  <span class="kd">var</span> <span class="nx">incident_name</span> <span class="o">=</span> <span class="nx">investigation_ticket</span>
+
+  <span class="c1">// Retrieve the parent folder's ID where the new folder + templates will be created</span>
+  <span class="kd">var</span> <span class="nx">parent_folder_id</span> <span class="o">=</span> <span class="nx">globalVariables</span><span class="p">().</span><span class="nx">investigations_folder_id</span><span class="p">;</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">'IR Investigation's' Folder ID: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">parent_folder_id</span><span class="p">);</span>
+ 
+  <span class="c1">// Retrieve the template folder's ID</span>
+  <span class="kd">var</span> <span class="nx">template_folder_id</span> <span class="o">=</span> <span class="nx">globalVariables</span><span class="p">().</span><span class="nx">ir_investigation_templates</span><span class="p">;</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">'IR Templates' Folder ID: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">template_folder_id</span><span class="p">);</span>
+
+  <span class="c1">// Determine which year's subfolder to use and create a new one if needed</span>
+  <span class="kd">var</span> <span class="nx">current_year</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getFullYear</span><span class="p">();</span>
+  <span class="nx">folder_status</span> <span class="o">=</span> <span class="nx">getSubFolders</span><span class="p">(</span><span class="nx">parent_folder_id</span><span class="p">,</span> <span class="nx">current_year</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">folder_status</span> <span class="o">==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">container_folder_id</span> <span class="o">=</span> <span class="nx">createSubFolder</span><span class="p">(</span><span class="nx">parent_folder_id</span><span class="p">,</span> <span class="nx">current_year</span><span class="p">);</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">'</span><span class="dl">"</span><span class="o">+</span><span class="nx">current_year</span><span class="o">+</span><span class="dl">"</span><span class="s2">' Folder ID: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">container_folder_id</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="kd">var</span> <span class="nx">new_parent_folder_id</span> <span class="o">=</span> <span class="nx">getSubFolderIdByParentId</span><span class="p">(</span><span class="nx">parent_folder_id</span><span class="p">,</span> <span class="nx">current_year</span><span class="p">);</span>
+     
+  <span class="c1">// Create a new subfolder for the current incident and return the folder ID</span>
+  <span class="kd">var</span> <span class="nx">incident_folder_id</span> <span class="o">=</span> <span class="nx">createSubFolder</span><span class="p">(</span><span class="nx">new_parent_folder_id</span><span class="p">,</span> <span class="nx">incident_name</span><span class="p">);</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">'</span><span class="dl">"</span><span class="o">+</span><span class="nx">incident_name</span><span class="o">+</span><span class="dl">"</span><span class="s2">' Folder ID: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">incident_folder_id</span><span class="p">);</span>
+
+  <span class="c1">// Create a new artifacts folder for the incident folder</span>
+  <span class="kd">var</span> <span class="nx">artifacts_folder_id</span> <span class="o">=</span> <span class="nx">createSubFolder</span><span class="p">(</span><span class="nx">incident_folder_id</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Artifacts</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">'Artifacts' Folder ID: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">artifacts_folder_id</span><span class="p">);</span>
+
+  <span class="c1">// Copy the templates to the newly created subfolder</span>
+  <span class="kd">var</span> <span class="nx">status</span> <span class="o">=</span> <span class="nx">copyTemplates</span><span class="p">(</span><span class="nx">template_folder_id</span><span class="p">,</span><span class="nx">incident_folder_id</span><span class="p">);</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">status</span><span class="p">);</span>
+  
+  <span class="kd">var</span> <span class="nx">folder_url</span> <span class="o">=</span> <span class="nx">DriveApp</span><span class="p">.</span><span class="nx">getFolderById</span><span class="p">(</span><span class="nx">incident_folder_id</span><span class="p">).</span><span class="nx">getUrl</span><span class="p">();</span>
+  
+  <span class="k">return</span> <span class="nx">folder_url</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">getFolderId</span><span class="p">(</span><span class="nx">folder_name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">folder_id</span> <span class="o">=</span> <span class="nx">DriveApp</span><span class="p">.</span><span class="nx">getFoldersByName</span><span class="p">(</span><span class="nx">folder_name</span><span class="p">).</span><span class="nx">next</span><span class="p">().</span><span class="nx">getId</span><span class="p">();</span>
+  <span class="k">return</span> <span class="nx">folder_id</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">getSubFolderIdByParentId</span><span class="p">(</span><span class="nx">parent_folder_id</span><span class="p">,</span> <span class="nx">current_year</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">childFolder</span> <span class="o">=</span> <span class="nx">DriveApp</span><span class="p">.</span><span class="nx">getFolderById</span><span class="p">(</span><span class="nx">parent_folder_id</span><span class="p">).</span><span class="nx">getFolders</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">sub_folder_id</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="nx">childFolder</span><span class="p">.</span><span class="nx">hasNext</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">child</span> <span class="o">=</span> <span class="nx">childFolder</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">child</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span> <span class="o">==</span> <span class="nx">current_year</span><span class="p">){</span>
+      <span class="nx">sub_folder_id</span> <span class="o">=</span> <span class="nx">child</span><span class="p">.</span><span class="nx">getId</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">sub_folder_id</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">getSubFolders</span><span class="p">(</span><span class="nx">parent_folder_id</span><span class="p">,</span> <span class="nx">current_year</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">childFolder</span> <span class="o">=</span> <span class="nx">DriveApp</span><span class="p">.</span><span class="nx">getFolderById</span><span class="p">(</span><span class="nx">parent_folder_id</span><span class="p">).</span><span class="nx">getFolders</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">folder_status</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="nx">childFolder</span><span class="p">.</span><span class="nx">hasNext</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">child</span> <span class="o">=</span> <span class="nx">childFolder</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">child</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">child</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span> <span class="o">==</span> <span class="nx">current_year</span><span class="p">){</span>
+      <span class="nx">folder_status</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">folder_status</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">createSubFolder</span><span class="p">(</span><span class="nx">parent_folder_id</span><span class="p">,</span> <span class="nx">folder_name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">new_folder</span> <span class="o">=</span> <span class="nx">DriveApp</span><span class="p">.</span><span class="nx">getFolderById</span><span class="p">(</span><span class="nx">parent_folder_id</span><span class="p">).</span><span class="nx">createFolder</span><span class="p">(</span><span class="nx">folder_name</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">new_folder_id</span> <span class="o">=</span> <span class="nx">new_folder</span><span class="p">.</span><span class="nx">getId</span><span class="p">();</span>
+  <span class="k">return</span> <span class="nx">new_folder_id</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Once the folder has been created, copy the templates from the existing templates folder into the newly created investigation folder</span>
+<span class="kd">function</span> <span class="nx">copyTemplates</span><span class="p">(</span><span class="nx">template_folder_id</span><span class="p">,</span> <span class="nx">new_folder_id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">destination_folder</span> <span class="o">=</span> <span class="nx">DriveApp</span><span class="p">.</span><span class="nx">getFolderById</span><span class="p">(</span><span class="nx">new_folder_id</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">templates_folder</span> <span class="o">=</span> <span class="nx">DriveApp</span><span class="p">.</span><span class="nx">getFolderById</span><span class="p">(</span><span class="nx">template_folder_id</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">template_files</span> <span class="o">=</span> <span class="nx">templates_folder</span><span class="p">.</span><span class="nx">getFiles</span><span class="p">();</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="nx">template_files</span><span class="p">.</span><span class="nx">hasNext</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">template_file</span> <span class="o">=</span> <span class="nx">template_files</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Copying template file:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">template_file</span><span class="p">);</span>
+    <span class="nx">template_file</span><span class="p">.</span><span class="nx">makeCopy</span><span class="p">(</span><span class="nx">template_file</span><span class="p">.</span><span class="nx">getName</span><span class="p">(),</span> <span class="nx">destination_folder</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="dl">"</span><span class="s2">Template creation process has been completed...</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p>For this use case, a basic front-end was also created in Google Apps Script. The HTML and CSS code is provided below:</p><div class="language-html highlighter-rouge"><div class="code-header"> <span data-label-text="HTML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+</pre><td class="rouge-code"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;base</span> <span class="na">target=</span><span class="s">"_top"</span><span class="nt">&gt;</span>
+     <span class="cp">&lt;?!= include('Stylesheet'); ?&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+      <span class="c1">// Prevent forms from submitting.</span>
+      <span class="kd">function</span> <span class="nx">preventFormSubmit</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">forms</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">form</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">forms</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">forms</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">submit</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+          <span class="p">});</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">load</span><span class="dl">'</span><span class="p">,</span> <span class="nx">preventFormSubmit</span><span class="p">);</span>
+
+      <span class="kd">function</span> <span class="nx">handleFormSubmit</span><span class="p">(</span><span class="nx">formObject</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">output</span><span class="dl">'</span><span class="p">);</span>
+        <span class="nx">div</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Templates are being created...&lt;br&gt;</span><span class="dl">"</span> <span class="p">;</span>
+        <span class="nx">google</span><span class="p">.</span><span class="nx">script</span><span class="p">.</span><span class="nx">run</span><span class="p">.</span><span class="nx">withSuccessHandler</span><span class="p">(</span><span class="nx">create_templates</span><span class="p">).</span><span class="nx">processForm</span><span class="p">(</span><span class="nx">formObject</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="kd">function</span> <span class="nx">create_templates</span><span class="p">(</span><span class="nx">investigation_ticket</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">output</span><span class="dl">'</span><span class="p">);</span>
+        <span class="nx">div</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="nx">investigation_ticket</span> <span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/script&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"center"</span><span class="nt">&gt;</span>Welcome to Template Automation!<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"form_div"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h2&gt;</span>What is this App?<span class="nt">&lt;/h2&gt;</span>
+      <span class="nt">&lt;p&gt;</span>This App was created to help automate the setup of incident templates for SOC team members.<span class="nt">&lt;/p&gt;</span>
+      
+      <span class="nt">&lt;h3&gt;</span>User Input Process:<span class="nt">&lt;/h3&gt;</span>
+      <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;b&gt;</span>Step 1:<span class="nt">&lt;/b&gt;</span> Create a Slack Channel with the Incident Ticket Name (SOC-xxxx)<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;b&gt;</span>Step 2:<span class="nt">&lt;/b&gt;</span> Insert the name into the field below and click "Submit"<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+
+      <span class="nt">&lt;h3&gt;</span>How the template works:<span class="nt">&lt;/h3&gt;</span>
+      <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;li&gt;</span>The automation will create a new folder located at "SOC -&gt; IR Investigations -&gt; Ticket_Name"<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>Once created, it will copy the Incident Response (IR) templates to the location<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>The folder will contain the following items:<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;ul&gt;</span>
+          <span class="nt">&lt;li&gt;&lt;b&gt;</span>Investigation Task Tracker:<span class="nt">&lt;/b&gt;</span> This is used to assign and track tasks during the investigation.<span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;&lt;b&gt;</span>Investigation Timeline:<span class="nt">&lt;/b&gt;</span> This is used to create a timeline for the incident including a list of IoCs.<span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;&lt;b&gt;</span>Investigation Narrative:<span class="nt">&lt;/b&gt;</span> This is the main narrative for the investigation and will contain proof of the questions asked in the "Investigation Task Tracker".<span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;&lt;b&gt;</span>Artifacts Folder:<span class="nt">&lt;/b&gt;</span> A folder to store all relevant investigation artifacts.<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+
+      <span class="nt">&lt;h2&gt;</span>Required User Input<span class="nt">&lt;/h2&gt;</span>
+      <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"myForm"</span> <span class="na">onsubmit=</span><span class="s">"handleFormSubmit(this)"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;b&gt;</span>Investigation Ticket #:<span class="nt">&lt;/b&gt;</span> <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"investigation_ticket"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="nt">/&gt;&lt;/br&gt;&lt;/br&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Submit"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/form&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"output"</span><span class="nt">&gt;&lt;/div&gt;</span>
+ <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</pre></table></code></div></div><div class="language-html highlighter-rouge"><div class="code-header"> <span data-label-text="HTML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre><span class="nt">&lt;style&gt;</span>
+<span class="nt">h1</span><span class="o">,</span><span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">b</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#741b47</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.center</span> <span class="p">{</span>
+  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">#output</span> <span class="p">{</span>
+  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#741b47</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span> 
+</pre></table></code></div></div><div class="language-javascript highlighter-rouge"><div class="code-header"> <span data-label-text="JavaScript"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">load</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Page is loaded</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></pre></table></code></div></div><p>The last piece of this was to create a new web app deployment which would create a Google hosted URL for you to use. Within the Apps Script editor, click on Deploy → New deployment (or Manage deployments if you have already created the web application).</p><p><img data-src="/assets/img/AppsScript/20240910150838.png" alt="img-description" data-proofer-ignore> <em>Google Apps Script - Manage Deployments</em></p><p><img data-src="/assets/img/AppsScript/20240910150803.png" alt="img-description" data-proofer-ignore> <em>Google Apps Script - Retrieve URLs</em></p><p>The final web app (with my amazing front-end development skills) is shown below:</p><p><img data-src="/assets/img/AppsScript/20240910153355.png" alt="img-description" data-proofer-ignore> <em>Google Apps Script - Web App</em></p><h1 id="conclusion">Conclusion</h1><p>While this blog post focused on Google Apps Script, most automation projects can be accomplished using various programming languages and external services. For this specific use case, Apps Script simplified this process by working natively within the Google ecosystem and I would generally recommend finding native integrations when automatic your manual day-to-day tasks.</p><p>I hope that you have learned something from this post and, as always, feel free to reach out to me with any comments!</p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/technical/'>Technical</a>, <a href='/categories/google-workspace/'>Google Workspace</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=Leveraging+Google+Apps+Script+for+Workflow+Automation+-+Kyhle+%C3%96hlinger&url=https%3A%2F%2Fohlinger.co%2Fposts%2Fgoogle-apps-script-automation%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=Leveraging+Google+Apps+Script+for+Workflow+Automation+-+Kyhle+%C3%96hlinger&u=https%3A%2F%2Fohlinger.co%2Fposts%2Fgoogle-apps-script-automation%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fohlinger.co%2Fposts%2Fgoogle-apps-script-automation%2F&text=Leveraging+Google+Apps+Script+for+Workflow+Automation+-+Kyhle+%C3%96hlinger" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/creating-a-chrome-extension/">Creating a Chrome Extension to Query Multiple LLMs</a><li><a href="/posts/centralizing-gcp-logging/">Setting up Logging and Billing for GCP Projects using Terraform</a><li><a href="/posts/testing-ai-setups/">High-Level Overview of my Current AI Toolset</a><li><a href="/posts/prompt-engineering-thoughts/">From Curiosity to Creativity&#58; My Thoughts on Prompt Engineering</a><li><a href="/posts/withsecure-myllmdoc-challenge/">WithSecure AI Challenge - My LLM Doctor</a></ul></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 pl-3 pr-3 pr-xl-4"><div class="post-navigation d-flex justify-content-between"> <a href="/posts/cloud-attack-surface/" class="btn btn-outline-primary" prompt="Older"><p>Reducing your Attack Surface by Limiting Cloud Services</p></a> <a href="/posts/withsecure-myllmbank-challenge/" class="btn btn-outline-primary" prompt="Newer"><p>WithSecure AI Challenge - My LLM Bank</p></a></div></div></div><footer class="row pl-3 pr-3"><div class="col-12 d-flex justify-content-between align-items-center text-muted pl-0 pr-0"><div class="footer-left"><p class="mb-0"> © 2025 <a href="https://twitter.com/KyhleO">Kyhle Öhlinger</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a><div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="false"><div class="toast-header"> <button type="button" class="ml-2 ml-auto close" data-dismiss="toast" aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div><div class="toast-body text-center pt-0"><p class="pl-2 pr-2 mb-3">A new version of content is available.</p><button type="button" class="btn btn-primary" aria-label="Update"> Update </button></div></div><script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>
