@@ -4,11 +4,7 @@ icon: fas fa-info-circle
 order: 2
 ---
 
-I am currently the Lead Security Engineer within the Security Response Team at [Wayfair](https://www.wayfair.com/), focusing on the improvement of Wayfair's security baseline through the implementation of preventative and detective security controls. In particular, I am focusing on automating and improving the Security Operations Center (SOC) while improving my understanding of DevSecOps, Artificial Intelligence (AI), Google Cloud Platform (GCP) and Kubernetes.
-
-I hold a Honour's Degree in Computer Science from the University of Pretoria, and international certifications such as OSCP, CRT, AWS SAA and more, which are linked [below](#accreditations).
-
-Prior to Wayfair, my work experience consisted of:
+I am currently the Lead Security Engineer within the Security Response Team at [Wayfair](https://www.wayfair.com/), focusing on the improvement of Wayfair's security baseline through the implementation of preventative and detective security controls. In particular, I am focusing on automating and improving the Security Operations Center (SOC) while improving my understanding of DevSecOps, Artificial Intelligence (AI), Google Cloud Platform (GCP) and Kubernetes. Prior to Wayfair, my work experience consisted of:
 
 - Cloud Security Researcher at [eSentire](https://esentire.com/) focusing on the implementation of detective security controls for eSentire’s XDR solution. In particular, I was responsible for determining the cloud security roadmap for eSentire and then creating threat detections across all major cloud providers and container based environments.
 
@@ -32,6 +28,8 @@ My favourite quote is from former Coca-Cola CEO, Bryon Dyson:
 I blog about cyber security, mental wellbeing, my take on the industry, and I am currently working on Blue Team focused blog posts. My blog posts can be found on the <a href="{{site.baseurl}}/">main page</a> or a listing per category is provided <a href="{{site.baseurl}}/categories/">here</a>. I've tried to add the correct tags to each of the posts so that they can easily be identified by their categories. If you enjoy my blog please feel free to reach out to me.  
 
 ## Accreditations
+
+I hold a Honour's Degree in Computer Science from the University of Pretoria, and international certifications such as OSCP, CRT, AWS SAA and more, which are linked [below](#accreditations).
 
 >In addition to the badges below, I have also obtained the CREST CRT and CPSA accreditations, but I cannot find a way to retrieve a digital badge for them.
 {: .prompt-info }
