@@ -1,6 +1,6 @@
 ---
 title: About
-icon: fas fa-info-circle
+icon: "fas fa-info-circle"
 order: 2
 ---
 
@@ -11,6 +11,10 @@ I am currently the Lead Security Engineer within the Security Response Team at [
 - Senior Cyber Security Consultant at [MWR CyberSec](https://mwrcybersec.com/) (previously F-Secure Consulting), with a focus on delivering strategic Cloud and Active Directory (AD) based security assessments. The assessments encompassed all aspects within the Cyber Kill-Chain across large corporate networks and environments in order to provide meaningful security hardening recommendations. 
 
 - Security Operations Centre (SOC) manager for a large financial institution in South Africa, my responsibilities included the day-to-day management of the SOC, and consolidating and improving the effectiveness of the security monitoring capability through the design and implementation of a transformation roadmap spanning people, processes and technology. 
+
+I'm a big believer in giving back to the security folks who make this industry great; see how I'm currently involved with the <a href="{{site.baseurl}}/community/"> community, mentoring, and advisory boards </a>. 
+
+---
 
 ## Favourite Quote
 My favourite quote is from former Coca-Cola CEO, Bryon Dyson:
@@ -23,9 +27,13 @@ My favourite quote is from former Coca-Cola CEO, Bryon Dyson:
 > 
 > You must understand that and strive for balance in your life
 
+---
+
 ## Blog Posts
 
 I blog about cyber security, mental wellbeing, my take on the industry, and I am currently working on Blue Team focused blog posts. My blog posts can be found on the <a href="{{site.baseurl}}/">main page</a> or a listing per category is provided <a href="{{site.baseurl}}/categories/">here</a>. I've tried to add the correct tags to each of the posts so that they can easily be identified by their categories. If you enjoy my blog please feel free to reach out to me.  
+
+---
 
 ## Accreditations
 

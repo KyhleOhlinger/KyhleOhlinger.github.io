@@ -1,7 +1,7 @@
 ---
 title: Leadership Philosophy
-icon: fas fa-user-tie
-order: 3
+icon: "fas fa-user-tie"
+order: 4
 ---
 
 This page captures my personal leadership philosophy - the principles I follow, the behaviours I prioritize, and the values that guide how I grow, lead, and support teams. If you want to create your own Leadership Philosophy, read my [blogpost](https://ohlinger.co/posts/creating-a-leadership-philosophy/) on the topic.
